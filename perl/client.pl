@@ -14,13 +14,8 @@ GetOptions( "port=i"    => \$port,
 die "Need Port!\n" unless defined $port;
 die "Need host!\n" unless defined $host;
 
-my $sock = IO::Socket::INET->new(
-            Proto       => 'udp',
-            PeerPort    => $port,
-            PeerAddr    => $host
-        ) or die "Creating socket: $!\n";
 
-my $child;
+
 
 if($child = fork) {
     while(1) {

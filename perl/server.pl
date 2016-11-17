@@ -16,14 +16,7 @@ my $sock = IO::Socket::INET->new(
 
 print "Waiting for users on $PORTNO...\n";
 
-my %clients;
-my $msg;
 
-while ($sock->recv($msg, $MAXLEN)) {
-    my $ipaddr      = gethostbyaddr($sock->peeraddr, AF_INET);
-    my $port        = $sock->peerport;
-    my $cur_client  = "$ipaddr:$port";
-    my $first_msg   = 0;
 
     if (not exists $clients{$cur_client}) {
         $clients{$cur_client}->{nick}       = "Guest";
